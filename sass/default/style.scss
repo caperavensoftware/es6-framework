@@ -1,0 +1,11 @@
+@import 'layout.css';
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #FB0;
+$background-color: #FFE;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: $background-color;
+}
