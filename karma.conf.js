@@ -1,6 +1,6 @@
 module.exports = function(config) {
     config.set({
-       basePath: '',
+       basePath: '.',
        
        frameworks: ['jspm', 'mocha', 'chai'],
        
@@ -8,7 +8,8 @@ module.exports = function(config) {
             'karma-chrome-launcher',
             'karma-jspm',
             'karma-mocha',
-            'karma-chai'     
+            'karma-chai',
+            'karma-babel-preprocessor'     
        ],
        
        // set this to true if you want to run tests when you make changes
@@ -21,12 +22,30 @@ module.exports = function(config) {
        ],
        
 		jspm: {
-			useBundles: true,
-			loadFiles: [
-				'tests/**/*.js'
-			],
-			serveFiles: ['src/**/*.js']
+            config: 'karma.systemjs.js',
+            packages: 'jspm_packages',      // folder that contains system.js
+			loadFiles: [                    // files to run as tests
+                'tests/**/*.js'
+            ],
+			serveFiles: [                   // files that must be served up as modules
+                'src/**/*.js'
+            ]
 		},
+                    
+        preprocessors: {
+            'src/**/*.js': ['babel'],
+            'test/**/*.js': ['babel']
+        },      
+        
+        babelPreprocessor: {
+            options: {
+                presets: ['es2015'],
+                sourceMap: 'inline'
+            },
+            sourceFileName: function (file) {
+                return file.originalPath;
+            }
+        },                      
                     
        exclude: [],
        
@@ -41,17 +60,6 @@ module.exports = function(config) {
        // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG       
        logLevel: config.LOG_INFO,
        
-        preprocessors: {
-            'src/**/*.js': ['babel'],
-            'tests/**/*.js': ['babel']
-        },      
-        
-        babelPreprocessor: {
-        options: {
-            modules: 'system'
-        }
-        },         
-
        browsers: ['Chrome'],
        
        reporters: ['progress'],
@@ -61,6 +69,13 @@ module.exports = function(config) {
        
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,              
+        singleRun: false,    
+        
+        client: {
+            mocha: {
+                reporter: 'progress',
+                ui: 'bdd'
+            }
+        },                  
     });  
 };
