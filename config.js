@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/", // baseURL: window.__karma__ ? "base" : "/",
+  baseURL: "/",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
