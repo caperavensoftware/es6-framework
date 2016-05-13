@@ -13,10 +13,11 @@
     "chai": "^3.5.0",
     "jspm": "^0.16.34",
     "karma": "^0.13.22",
+    "karma-babel-preprocessor": "^6.0.1",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^1.0.1",
     "karma-jspm": "^2.1.0",
     "karma-mocha": "^1.0.1",
-    "karma-mocha-debug": "^0.1.2",
     "mocha": "^2.4.5",
     "sinon": "^1.17.4"
   },
