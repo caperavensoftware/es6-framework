@@ -15,6 +15,6 @@ export class Calculator {
 
 export default class Something {
     report() {
-        console.log(report);
+        console.log("report");
     }
 }

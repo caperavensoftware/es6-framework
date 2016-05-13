@@ -9,7 +9,8 @@ module.exports = function(config) {
             'karma-jspm',
             'karma-mocha',
             'karma-chai',
-            'karma-babel-preprocessor'     
+            'karma-babel-preprocessor',
+            'karma-coverage'     
        ],
        
        // set this to true if you want to run tests when you make changes
@@ -33,7 +34,7 @@ module.exports = function(config) {
 		},
                     
         preprocessors: {
-            'src/**/*.js': ['babel'],
+            'src/**/*.js': ['babel', 'coverage'],
             'test/**/*.js': ['babel']
         },      
         
@@ -62,7 +63,7 @@ module.exports = function(config) {
        
        browsers: ['Chrome'],
        
-       reporters: ['progress'],
+       reporters: ['progress', 'coverage'],
 
        // web server port
        port: 9876,
@@ -76,6 +77,14 @@ module.exports = function(config) {
                 reporter: 'progress',
                 ui: 'bdd'
             }
-        },                  
+        },    
+        
+        coverageReporter: {
+            reporters:[
+                {type: 'html', dir:'coverage/'},
+                {type: 'teamcity'},
+                {type: 'text-summary'}
+            ]            
+        }        
     });  
 };
