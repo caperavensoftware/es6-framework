@@ -13,7 +13,7 @@ class Application {
         this.addElement(addresult);      
         
         let result = calculator.multiply(2, 3);  
-        this.addElement(addresult);      
+        this.addElement(result);      
     }
 }
 

@@ -13,7 +13,7 @@
   },
   "env": {
     "browser": true,
-    "node": false,
+    "node": true,
     "jasmine": false
   },
   "parser": "babel-eslint",
@@ -31,7 +31,7 @@
     "camelcase": 2,
     "no-alert": 2,
     "no-else-return": 1,
-    "strict": [0, "global"],
+    "strict": 0,
     "brace-style": [2, "stroustrup"],
     "comma-style": [1, "last"],
     "no-lonely-if": 1,

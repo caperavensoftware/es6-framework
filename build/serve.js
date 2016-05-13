@@ -1,3 +1,5 @@
+/*jshint strict: false */
+
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
 import paths from './paths';

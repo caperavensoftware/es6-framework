@@ -1,4 +1,4 @@
-/* eslint-disable no-var */
+/* eslint-disable no-var strict*/
  var path = require('path');
  var paths = require('./paths');
 

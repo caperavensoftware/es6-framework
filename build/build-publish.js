@@ -1,9 +1,9 @@
+/*jshint strict: false */
+
 import gulp from 'gulp';
 import bump from 'gulp-bump';
 import rename from 'gulp-rename';
 import through from 'through2'; 
-import fs from 'fs';
-import Stream from 'stream';
 
 import * as paths from './paths';
 
@@ -31,8 +31,12 @@ function copyPackageJson() {
     .pipe(gulp.dest(paths.publishPath));
 }
 
+function copyIndexHtml() {
+    return gulp.src('index.html')
+    .pipe(gulp.dest(paths.publishPath));
+}
+
 function cleanPackage(file, encoding, callback) {
-    let error = null;   
     let object = JSON.parse(String(file.contents));    
     let result = file;
     
@@ -47,8 +51,8 @@ function cleanPackage(file, encoding, callback) {
 }
 
 function validatePackageName(object) {
-    if (object.main == 'index.js') {
-        throw error('package.json property "main" must have a descriptive name not "index.js"');
+    if (object.main === 'index.js') {
+        throw Error('package.json property "main" must have a descriptive name not "index.js"');
     }
 }
 
@@ -57,6 +61,7 @@ gulp.task('build-publish', ['build-all', 'clean-publish'], function(){
     publishStyles();    
     copyReadMe();
     copyPackageJson();
+    copyIndexHtml();
 });
 
 gulp.task('publish-js', publishJs);

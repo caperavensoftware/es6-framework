@@ -1,3 +1,5 @@
+/*jshint strict: false */
+
 import gulp from 'gulp'; 
 import clean from 'gulp-clean';
 

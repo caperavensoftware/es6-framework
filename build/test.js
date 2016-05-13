@@ -1,30 +1,17 @@
+/*jshint strict: false */
+
 import gulp from 'gulp';
-// import mocha from 'gulp-mocha';
-// import istanbul from 'gulp-istanbul';
-// import {Instrumenter} from 'isparta';
 import through from 'through2'; 
 import ParsedCodeContainer from './test-parser';
 import {PrintSummaryContainer} from './test-parser';
 import fs from 'fs';
+import karma from 'karma';
 
-// function testUnit() {
-//     return gulp.src('tests/unit/*.js')
-//     .pipe(mocha());
-// }
-
-// function coverageUnit(done) {
-//   gulp.src(['src/**/*.js'])
-//     .pipe(istanbul({instrumenter: Instrumenter}))
-//     .pipe(istanbul.hookRequire())
-//     .on('finish', function() {
-//       return testUnit()
-//       .pipe(istanbul.writeReports())
-//       .on('end', done);
-//     });
-// }
-
-// gulp.task('test-unit', testUnit);
-// gulp.task('coverage-unit', coverageUnit);
+gulp.task('test-unit', function(){
+  const server = new karma.Server();
+  server.singleRun = true;
+  server.start();
+});
 
 
 let sourceContainer = null;
