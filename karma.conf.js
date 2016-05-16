@@ -2,15 +2,15 @@ module.exports = function(config) {
     config.set({
        basePath: '.',
        
-       frameworks: ['jspm', 'mocha', 'chai'],
+       frameworks: ['jspm', 'mocha', 'chai', 'sinon'],
        
        plugins: [
             'karma-chrome-launcher',
             'karma-jspm',
             'karma-mocha',
             'karma-chai',
-            'karma-babel-preprocessor',
-            'karma-coverage'     
+            'karma-sinon',     
+            'karma-coverage'
        ],
        
        // set this to true if you want to run tests when you make changes
@@ -34,21 +34,8 @@ module.exports = function(config) {
 		},
                     
         preprocessors: {
-            'src/**/*.js': ['babel', 'coverage'],
-            'test/**/*.js': ['babel']
-        },      
-        
-        babelPreprocessor: {
-            options: {
-                presets: ['es2015'],
-                sourceMap: 'inline'
-            },
-            sourceFileName: function (file) {
-                return file.originalPath;
-            }
-        },                      
-                    
-       exclude: [],
+        },                     
+        exclude: [],
        
 		proxies: {
             '/tests/': '/base/tests/',

@@ -18,6 +18,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.6",
     
-    "chai": "node_modules/chai/chai.js"
+    "chai": "node_modules/chai/chai.js",
+    "sinon": "node_modules/sinon/pkg/sinon.js"
   }
 });

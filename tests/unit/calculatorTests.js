@@ -1,5 +1,6 @@
-
+/*jshint strict: false */
 import chai from 'chai';
+import sinon from 'sinon';
 import {Calculator} from './../../src/calculator';
 const expect = chai.expect;
 
@@ -20,8 +21,11 @@ describe('Calculator Tests', function() {
         expect(result).to.equal(1);
     });
     
-    it.skip('multiply', function() {
+    it('multiply', function() {        
+        sinon.spy(calculator, 'validate');
+        
         const result = calculator.multiply(2,2);
         expect(result).to.equal(4);
+        assert(calculator.validate.calledOnce);
     });
 });
