@@ -9,8 +9,7 @@ module.exports = function(config) {
             'karma-jspm',
             'karma-mocha',
             'karma-chai',
-            'karma-sinon',     
-            'karma-coverage'
+            'karma-sinon'  
        ],
        
        // set this to true if you want to run tests when you make changes
@@ -50,7 +49,7 @@ module.exports = function(config) {
        
        browsers: ['Chrome'],
        
-       reporters: ['progress', 'coverage'],
+       reporters: ['progress'],
 
        // web server port
        port: 9876,
@@ -64,14 +63,6 @@ module.exports = function(config) {
                 reporter: 'progress',
                 ui: 'bdd'
             }
-        },    
-        
-        coverageReporter: {
-            reporters:[
-                {type: 'html', dir:'coverage/'},
-                {type: 'teamcity'},
-                {type: 'text-summary'}
-            ]            
-        }        
+        },            
     });  
 };
