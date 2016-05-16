@@ -1,6 +1,5 @@
 /*jshint strict: false */
 
-import gulp from 'gulp';
 import through from 'through2'; 
 import ParsedCodeContainer from './test-parser';
 import {PrintSummaryContainer} from './test-parser';
@@ -8,12 +7,16 @@ import fs from 'fs';
 import {Instrumenter} from 'isparta';
 import istanbul from 'gulp-istanbul';
 import mocha from 'gulp-mocha';
+import gulpParam from 'gulp-param';
+import gulpInstance from 'gulp';
+
+const gulp = gulpParam(gulpInstance, process.argv);
 
 let sourceContainer = null;
 let testContainer = null;
 
-function testUnit() {
-    return gulp.src('tests/unit/*.js')
+function testUnit(path) {
+    return gulp.src(path)
     .pipe(mocha());
 }
 
@@ -75,7 +78,16 @@ function saveMissingTestsJson(done) {
   fs.writeFile(`${dir}/missingTests.json`, printSummary.jsonText, done);
 }
 
-gulp.task('test-unit', testUnit);
+gulp.task('test-unit', function(filename) {
+  let path = 'tests/unit/*.js';
+  
+  if (filename) {
+    path = `tests/unit/${filename}`;
+  }
+  
+  testUnit(path);
+});
+
 gulp.task('coverage-unit', coverageUnit);
 
 gulp.task('missing-tests', function() {
