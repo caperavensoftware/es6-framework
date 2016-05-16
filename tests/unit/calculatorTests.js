@@ -26,6 +26,6 @@ describe('Calculator Tests', function() {
         
         const result = calculator.multiply(2,2);
         expect(result).to.equal(4);
-        assert(calculator.validate.calledOnce);
+        expect(calculator.validate.calledOnce).to.be.true;
     });
 });

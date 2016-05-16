@@ -5,18 +5,28 @@ import through from 'through2';
 import ParsedCodeContainer from './test-parser';
 import {PrintSummaryContainer} from './test-parser';
 import fs from 'fs';
-import karma from 'karma';
-
-gulp.task('test-unit', function(){
-  const server = new karma.Server();
-  server.singleRun = true;
-  server.start();
-});
-
+import {Instrumenter} from 'isparta';
+import istanbul from 'gulp-istanbul';
+import mocha from 'gulp-mocha';
 
 let sourceContainer = null;
 let testContainer = null;
 
+function testUnit() {
+    return gulp.src('tests/unit/*.js')
+    .pipe(mocha());
+}
+
+function coverageUnit(done) {
+  gulp.src(['src/**/*.js'])
+    .pipe(istanbul({instrumenter: Instrumenter}))
+    .pipe(istanbul.hookRequire())
+    .on('finish', function() {
+      return testUnit()
+      .pipe(istanbul.writeReports())
+      .on('end', done);
+    });
+}
 
 function processSource() {
   return new Promise(function(resolved) {
@@ -64,6 +74,9 @@ function saveMissingTestsJson(done) {
   
   fs.writeFile(`${dir}/missingTests.json`, printSummary.jsonText, done);
 }
+
+gulp.task('test-unit', testUnit);
+gulp.task('coverage-unit', coverageUnit);
 
 gulp.task('missing-tests', function() {
   sourceContainer = new ParsedCodeContainer();
