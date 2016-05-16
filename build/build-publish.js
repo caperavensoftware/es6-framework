@@ -7,14 +7,19 @@ import through from 'through2';
 
 import * as paths from './paths';
 
-function publishJs() {
-    return gulp.src([paths.appFiles, paths.notAppFile])
+function copyJs() {
+    return gulp.src(paths.appFiles)
     .pipe(gulp.dest(paths.publishAppPath));
 }
 
-function publishStyles() {
+function copyStyles() {
     return gulp.src(paths.stylesFiles)
     .pipe(gulp.dest(paths.publishStylesPath));  
+}
+
+function copyJSPM() {
+    return gulp.src(paths.jspmFiles)
+    .pipe(gulp.dest(paths.publishJspmPath)); 
 }
 
 function copyReadMe() {
@@ -34,6 +39,11 @@ function copyPackageJson() {
 function copyIndexHtml() {
     return gulp.src('index.html')
     .pipe(gulp.dest(paths.publishPath));
+}
+
+function copyConfigJs() {
+    return gulp.src('config.js')
+    .pipe(gulp.dest(paths.publishPath));    
 }
 
 function cleanPackage(file, encoding, callback) {
@@ -57,12 +67,14 @@ function validatePackageName(object) {
 }
 
 gulp.task('build-publish', ['build-all', 'clean-publish'], function(){
-    publishJs();
-    publishStyles();    
+    copyJs();
+    copyStyles();    
     copyReadMe();
     copyPackageJson();
     copyIndexHtml();
+    copyConfigJs();
+    copyJSPM();
 });
 
-gulp.task('publish-js', publishJs);
-gulp.task('publish-css', publishStyles);
+gulp.task('publish-js', copyJs);
+gulp.task('publish-css', copyStyles);
