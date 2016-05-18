@@ -79,7 +79,7 @@ function saveMissingTestsJson(done) {
 }
 
 gulp.task('test-unit', function(filename) {
-  let path = 'tests/unit/*.js';
+  let path = 'tests/unit/**/*.js';
   
   if (filename) {
     path = `tests/unit/${filename}`;

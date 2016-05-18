@@ -15,4 +15,5 @@ gulp.task('serve', ['build-all'], function(){
 gulp.task('serve:watch', ['serve'], function(){
     gulp.watch('*.html').on('change', browserSync.reload);
     gulp.watch(paths.sassFiles, ['build-sass']).on('change', browserSync.reload);
+    gulp.watch(paths.sourceFiles, ['build-js']).on('change', browserSync.reload);
 });
