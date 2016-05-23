@@ -1,16 +1,29 @@
 <!DOCTYPE>
 
-<html>    
-    <head>
-        <title>Test configuration</title>
-        <link rel="stylesheet" type="text/css" href="styles/default/style.css">
-    </head>
-    <body>        
-        <script src="./jspm_packages/system.js"></script>
-        <script src="./config.js"></script>
+<html>
 
-        <script>
-            System.import("./app/app.js");
-        </script>  
-    </body>
+<head>
+    <title>Todo List Demo (with local storage)</title>
+    <link rel="stylesheet" type="text/css" href="styles/default/style.css">
+</head>
+<body>
+
+<script src="./jspm_packages/system.js"></script>
+<script src="./config.js"></script>
+
+<script>
+    System.import("./app/app.js");
+</script>
+
+<ul id="todoList"></ul>
+
+<div class="task-list">
+    <h3>Add a task</h3>
+    <form id="todo-form">
+        <input type="text" placeholder="Title" id="edtTodo"/>
+        <input type="datetime"  placeholder="Due Date (dd/mm/yyyy)" id="edtDate"/>
+        <input type="button" value="Add Task" id="btnAdd"/>
+    </form>
+</div>
+</body>
 </html>
