@@ -6,3 +6,5 @@ coverage
 styles
 app
 publish
+/src/es6-framework.sln
+/src/.vs/es6-framework/v14
